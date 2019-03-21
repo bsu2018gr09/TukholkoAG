@@ -5,6 +5,11 @@
 using namespace std;
 void giveMemory2(int **&ptr,int N, int M) {
 	ptr = new(nothrow) int*[N];
+	if (!ptr)
+	{
+		cout << "Error!\n";
+		exit(0);
+	}
 	for (int i = 0; i < N; ++i) {
 		ptr[i] = new(nothrow) int[M];
 		
