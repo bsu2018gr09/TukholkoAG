@@ -54,10 +54,6 @@ void sort(int **ptr, int N, int M) {
 		}
 }
 void freeMemory(int **&s, int N) {
-	/*for (int i = 0; i < N-1; ++i) {
-		delete[] s[i];
-		s[i]= nullptr;
-	}*/
 	delete[] s;
 	s = nullptr;
 }
