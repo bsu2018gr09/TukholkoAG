@@ -47,15 +47,19 @@ int min(int **ptr, int M, int i) {
 	return min;
 }
 void sort(int **ptr, int N, int M) {
-	for (int k = 0; k < N ; ++k)
-		for (int i = 0, i2 = 1; i < N-k, i2 < N-k; ++i, ++i2) {
-			if (min(ptr, M, i)>min(ptr, M, i2))
+	for (int k = 0; k < N-1 ; ++k)
+		for (int i = 0; i < N-1-k; ++i) {
+			if (min(ptr, M, i)>min(ptr, M, i +1))
 				swap(ptr[i], ptr[i + 1]);
 		}
 }
-void free_array(int **arr, int n) {
-	delete[] arr;
-	arr = nullptr;
+void freeMemory(int **&s, int N) {
+	/*for (int i = 0; i < N-1; ++i) {
+		delete[] s[i];
+		s[i]= nullptr;
+	}*/
+	delete[] s;
+	s = nullptr;
 }
 int main() {
 	int N{ 0 }, M{ 0 };
@@ -67,7 +71,7 @@ int main() {
 	printArr2(ptr, N, M);
 	sort(ptr, N, M);cout << '\n';
 	printArr2(ptr, N, M);
-	free_array(ptr, N);
+	freeMemory(ptr, N);
 	system("pause");
 	return 0;
 }
