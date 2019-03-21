@@ -3,8 +3,8 @@
 #include<iostream>
 #include<time.h>
 using namespace std;
-int * pA = nullptr;
 int* giveMemory(int N) {
+	int * pA = nullptr;
 	pA = new(nothrow) int[N];
 	if (!pA) {
 		cout << "error";
@@ -37,6 +37,8 @@ void printArr(int *arr, int n) {
 }
 int main() {
 	int N{0},cnt{0};
+	int * pA = nullptr;
+	pA=giveMemory(N);
 	cout << "Enter array dimension\n";
 	cin >> N;
 	giveMemory(N);
