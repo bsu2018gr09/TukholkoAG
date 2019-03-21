@@ -5,7 +5,7 @@
 #include<cstring>
 #include<clocale>
 using namespace std;
-const int MAX = 255;
+const int MAX = 500;
 void printStr(char *s, int N) {
 	for (int i = 0; i < N; ++i)
 		cout << s[i];
@@ -34,9 +34,9 @@ void printEvenLenWords(char ** massOfWords, int k, char *Pstr, char letter) {
 int WordsCount(char* tmp)
 {
 	int k = 0;
-	char * p = strtok(tmp, " ,.-;");
+	char * p = strtok(tmp, " ,.;");
 	while (p != nullptr){
-		p = strtok(NULL, " ,.-");
+		p = strtok(NULL, " ,.");
 		k++;}
 	return k;
 }
@@ -50,6 +50,7 @@ void initStr(char *&str) {
 void freeMemory(char **&s, int k) {
 	for (int i = 0; i < k; ++i) {
 		delete s[i];
+		s[i]=nullptr;
 	}
 	delete[] s;
 	s = nullptr;
