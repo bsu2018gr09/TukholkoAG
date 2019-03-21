@@ -6,12 +6,11 @@
 #include<clocale>
 using namespace std;
 const int MAX = 255;
-int k = 0; // количество слов
 void printStr(char *s, int N) {
 	for (int i = 0; i < N; ++i)
 		cout << s[i];
 }
-int wordsMass(char * str, char **mass) {
+void wordsMass(char * str, char **mass) {
 	char *p = str;
 	char str1[] = ",.; \t";
 	for (int i = 0; *p; ++i) {
@@ -24,7 +23,6 @@ int wordsMass(char * str, char **mass) {
 		p += len;
 
 	}
-	return k;
 }
 void printEvenLenWords(char ** massOfWords, int k, char *Pstr, char letter) {
 	for (int i = 0; i < k; ++i) {
@@ -35,35 +33,50 @@ void printEvenLenWords(char ** massOfWords, int k, char *Pstr, char letter) {
 }
 int WordsCount(char* tmp)
 {
+	int k = 0;
 	char * p = strtok(tmp, " ,.-;");
 	while (p != nullptr){
 		p = strtok(NULL, " ,.-");
 		k++;}
 	return k;
 }
-
+void initStr(char *&str) {
+	char buf[MAX];
+	cin.getline(buf, MAX);
+	str = new(nothrow) char[strlen(buf) + 1];
+	if (!str) { cout<<" Error!"; exit(1); }
+	strcpy(str, buf);
+}
+void freeMemory(char **&s, int k) {
+	for (int i = 0; i < k; ++i) {
+		delete s[i];
+	}
+	delete[] s;
+	s = nullptr;
+}
 int main() {
 	setlocale(LC_ALL, "RUS");
-	const int N{ 100 };
-	char buf[MAX], buf2[MAX];
+	int k = 0;
+	char*str=nullptr,*Pstr = nullptr;
 	char letter;
 	cout << "Введите строку\n";
-	cin.getline(buf, MAX);
-	char * str = new(nothrow) char[strlen(buf) + 1];
-	strcpy(str, buf);
-	char * tmp = new(nothrow) char[strlen(buf) + 1];
-	strcpy(tmp, buf);
-	WordsCount(tmp);
+	initStr(str);
+	char * tmp = new(nothrow) char[strlen(str)+1];
+	strcpy(tmp,str);
+	k = WordsCount(tmp);
 	char ** massOfWords = new(nothrow) char*[k];
+	cout << "Введите подстроку\n";
+	initStr(Pstr);
 	cout << "Введите букву конца слова\n";
 	cin >> letter;
-	cout << "Введите подстроку\n";
-	cin >> buf2;
-	char * Pstr = new(nothrow) char[strlen(buf2) + 1];
-	strcpy(Pstr, buf2);
 	wordsMass(str, massOfWords);
 	cout << "Слова четной длины, заканчивающиеся на letter:\n";
 	printEvenLenWords(massOfWords,k,Pstr,letter);
+	freeMemory(massOfWords,k);
+	delete [] str;
+	delete[] Pstr;
+	str = nullptr;
+	Pstr = nullptr;
 	system("pause");
 	return 0;
 }
