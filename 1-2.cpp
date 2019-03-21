@@ -35,29 +35,34 @@ void printArr(int *arr, int n) {
 		*(arr + i) = rand() % (10 - (-10) + 1) + (-10);
 	}
 }
-int main() {
-	int N{0},cnt{0};
-	int * pA = nullptr;
-	pA=giveMemory(N);
-	cout << "Enter array dimension\n";
-	cin >> N;
-	giveMemory(N);
-	randomInit(pA, N);cout << endl;
-	printArr(pA, N);cout << endl;
-	for (int i = N-1; i >= 0; --i) {            //переставляет положительные элементы в конец не меняя порядок
+void positivToTheEnd(int *pA, int N) {
+	int cnt  = 0;
+	for (int i = N - 1; i >= 0; --i) {            //переставляет положительные элементы в конец не меняя порядок
 		if (*(pA + i) > 0) {
-			swap(*(pA + i),*(pA + N - 1 - cnt));
+			swap(*(pA + i), *(pA + N - 1 - cnt));
 			cnt++;
 		}
 	}
-	for (int j = 0; j < N ; ++j)				//расставляет отрицательные элементы в порядке убывания
-	for (int i = 0; i < N ; ++i) {
-			if (*(pA + i) < *(pA + i + 1)) 
+}
+void sortNegativ(int *pA, int N) {
+	for (int j = 0; j < N; ++j)				//расставляет отрицательные элементы в порядке убывания
+		for (int i = 0; i < N; ++i) {
+			if (*(pA + i) < *(pA + i + 1))
 				if (*(pA + i + 1) <= 0)
-				swap(*(pA + i), *(pA + i+ 1));	
-}	
-	cout<<endl;
-	printArr(pA, N);cout << endl;
+					swap(*(pA + i), *(pA + i + 1));
+		}
+}
+int main() {
+	int N{ 0 };
+	cout << "Enter array dimension\n";
+	cin >> N;
+	int * pA = nullptr;
+	pA = giveMemory(N);
+	randomInit(pA, N);cout << '\n';
+	printArr(pA, N);cout << '\n';
+	positivToTheEnd(pA,N);
+	sortNegativ(pA, N);cout <<'\n';
+	printArr(pA, N);cout << '\n';
 	freeMemory(pA);
 	system("pause");
 	return 0;
