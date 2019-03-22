@@ -47,10 +47,16 @@ int min(int **ptr, int M, int i) {
 	return min;
 }
 void sort(int **ptr, int N, int M) {
-	for (int k = 0; k < N-1 ; ++k)
+	int flag = 0;
+	for (int k = 0; k < N-1 ; ++k){
 		for (int i = 0; i < N-1-k; ++i) {
-			if (min(ptr, M, i)>min(ptr, M, i +1))
+			if (min(ptr, M, i)>min(ptr, M, i +1)){
 				swap(ptr[i], ptr[i + 1]);
+				flag++;}
+		}
+		if (!flag) {
+			break;
+		}
 		}
 }
 void freeMemory(int **&s, int N) {
@@ -63,7 +69,7 @@ int main() {
 	cin >> N >> M;
 	int **ptr = nullptr;
 	giveMemory2(ptr, N, M);
-	initRandArray(ptr, N, M, 0, 20);
+	initRandArray(ptr, N, M, 0, 2);
 	printArr2(ptr, N, M);
 	sort(ptr, N, M);cout << '\n';
 	printArr2(ptr, N, M);
