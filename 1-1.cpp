@@ -19,7 +19,7 @@ void distance(int *d, int * X, int *Y, int A, int B, int C, int N) {
 	}
 }
 void sortCoords(int * d, int * X, int * Y, int N) {
-	int flag = 0l
+	int flag = 0;
 	for (int j = 0; j < N - 1; ++j){
 		for (int i = 0; i < N - j - 1; ++i) {
 			if (d[i] > d[i + 1])
