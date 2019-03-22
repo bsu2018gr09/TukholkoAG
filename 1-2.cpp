@@ -8,7 +8,7 @@ int* giveMemory(int N) {
 	pA = new(nothrow) int[N];
 	if (!pA) {
 		cout << "error";
-		return 0;
+		exit(0);
 	}
 	return pA;
 }
@@ -36,7 +36,7 @@ void printArr(int *arr, int n) {
 	}
 }
 void positivToTheEnd(int *pA, int N) {
-	int cnt  = 0;
+	int cnt = 0;
 	for (int i = N - 1; i >= 0; --i) {            //переставляет положительные элементы в конец не меняя порядок
 		if (*(pA + i) > 0) {
 			swap(*(pA + i), *(pA + N - 1 - cnt));
@@ -46,14 +46,15 @@ void positivToTheEnd(int *pA, int N) {
 }
 void sortNegativ(int *pA, int N) {
 	int flag = 0;
-	for (int j = 0; j < N - 1; ++j)	{			//расставляет отрицательные элементы в порядке убывания
+	for (int j = 0; j < N - 1; ++j) {			//расставляет отрицательные элементы в порядке убывания
 		for (int i = 0; i < N - j; ++i) {
 			if (*(pA + i) < *(pA + i + 1))
-				if (*(pA + i + 1) <= 0){
+				if (*(pA + i + 1) <= 0) {
 					swap(*(pA + i), *(pA + i + 1));
-					flag++;}
+					flag++;
+				}
 		}
-	if(!flag){break;}	
+		if (!flag) { break; }
 	}
 }
 int main() {
@@ -64,8 +65,8 @@ int main() {
 	pA = giveMemory(N);
 	randomInit(pA, N);cout << '\n';
 	printArr(pA, N);cout << '\n';
-	positivToTheEnd(pA,N);
-	sortNegativ(pA, N);cout <<'\n';
+	positivToTheEnd(pA, N);
+	sortNegativ(pA, N);cout << '\n';
 	printArr(pA, N);cout << '\n';
 	freeMemory(pA);
 	system("pause");
