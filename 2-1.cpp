@@ -12,7 +12,7 @@ void giveMemory2(int **&ptr, int N, int M) {
 	}
 	for (int i = 0; i < N; ++i) {
 		ptr[i] = new(nothrow) int[M];
-		if (!ptr)
+		if (!ptr[i])
 		{
 			cout << "Error!\n";
 			exit(0);
