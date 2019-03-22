@@ -74,10 +74,14 @@ int PrimeToTheEnd(int *pA, int N) {
 	return cnt;
 }
 void sortPrime(int *pA, int cnt, int N) {
-	for (int i = 0; i < cnt; ++i)			//Расставляет простые в порядке возрастания
+	int flag = 0;
+	for (int i = 0; i < cnt; ++i){	//Расставляет простые в порядке возрастания
 		for (int j = N - cnt; j < N - 1; ++j)
-			if (*(pA + j)>*(pA + j + 1))
+			if (*(pA + j)>*(pA + j + 1)){
 				swap(*(pA + j), *(pA + j + 1));
+				flag++;}
+	if(!flag){break;}
+	}
 }
 int main() {
 	int N{ 0 }, cnt{ 0 };
