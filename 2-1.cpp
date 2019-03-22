@@ -22,7 +22,6 @@ void giveMemory2(int **&ptr, int N, int M) {
 void initRandArray(int **ptr, int N, int M, int min, int max) {
 	srand(time(0));
 	for (int i = 0; i < N; ++i) {
-		++ptr[i];
 		for (int j = 0; j < M; ++j) {
 			ptr[i][j] = rand() % (max - min + 1) - min;
 		}
@@ -48,18 +47,22 @@ int min(int **ptr, int M, int i) {
 }
 void sort(int **ptr, int N, int M) {
 	int flag = 0;
-	for (int k = 0; k < N-1 ; ++k){
-		for (int i = 0; i < N-1-k; ++i) {
-			if (min(ptr, M, i)>min(ptr, M, i +1)){
+	for (int k = 0; k < N - 1; ++k) {
+		for (int i = 0; i < N - 1 - k; ++i) {
+			if (min(ptr, M, i)>min(ptr, M, i + 1)) {
 				swap(ptr[i], ptr[i + 1]);
-				flag++;}
+				flag++;
+			}
 		}
 		if (!flag) {
 			break;
 		}
-		}
+	}
 }
 void freeMemory(int **&s, int N) {
+	for(int i = 0; i < N; ++i){
+		delete[] s[i];
+		s[i] = nullptr;}
 	delete[] s;
 	s = nullptr;
 }
@@ -69,7 +72,7 @@ int main() {
 	cin >> N >> M;
 	int **ptr = nullptr;
 	giveMemory2(ptr, N, M);
-	initRandArray(ptr, N, M, 0, 2);
+	initRandArray(ptr, N, M, 0, 10);
 	printArr2(ptr, N, M);
 	sort(ptr, N, M);cout << '\n';
 	printArr2(ptr, N, M);
@@ -77,5 +80,3 @@ int main() {
 	system("pause");
 	return 0;
 }
-
-
