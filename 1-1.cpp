@@ -19,15 +19,19 @@ void distance(int *d, int * X, int *Y, int A, int B, int C, int N) {
 	}
 }
 void sortCoords(int * d, int * X, int * Y, int N) {
-	for (int j = 0; j < N - 1; ++j)
+	int flag = 0l
+	for (int j = 0; j < N - 1; ++j){
 		for (int i = 0; i < N - j - 1; ++i) {
 			if (d[i] > d[i + 1])
 			{
 				swap(d[i], d[i + 1]);
 				swap(X[i], X[i + 1]);
 				swap(Y[i], Y[i + 1]); 
+				flag++;
 			}
 		}
+	if(!flag){break;}	
+	}
 }
 void free_Memory(int * arr) {
 	delete[] arr;
