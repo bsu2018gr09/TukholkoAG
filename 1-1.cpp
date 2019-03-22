@@ -44,8 +44,8 @@ int main()
 	int N;
 	cout << "Введите количество точек ";
 	cin >> N;
-	int *X = new int[N];
-	int *Y = new int[N];
+	int *X = new int[N];if(!X){cout<<"Error"; return 0;}
+	int *Y = new int[N];if(!Y){cout<<"Error"; return 0;}
 	initRandomCords(X, N);
 	initRandomCords(Y, N);
 	cout<<"x: | ";printArr(X, N);cout << '\n';
