@@ -46,8 +46,8 @@ int min(int **ptr, int M, int i) {
 	return min;
 }
 void sort(int **ptr, int N, int M) {
-	int flag = 0;
 	for (int k = 0; k < N - 1; ++k) {
+		int flag = 0;
 		for (int i = 0; i < N - 1 - k; ++i) {
 			if (min(ptr, M, i)>min(ptr, M, i + 1)) {
 				swap(ptr[i], ptr[i + 1]);
