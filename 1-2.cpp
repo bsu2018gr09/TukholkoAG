@@ -45,8 +45,8 @@ void positivToTheEnd(int *pA, int N) {
 	}
 }
 void sortNegativ(int *pA, int N) {
-	int flag = 0;
-	for (int j = 0; j < N - 1; ++j) {			//расставляет отрицательные элементы в порядке убывания
+	for (int j = 0; j < N - 1; ++j) {//расставляет отрицательные элементы в порядке убывания
+		int flag = 0;
 		for (int i = 0; i < N - j; ++i) {
 			if (*(pA + i) < *(pA + i + 1))
 				if (*(pA + i + 1) <= 0) {
