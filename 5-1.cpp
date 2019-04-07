@@ -1,4 +1,5 @@
 ﻿//Горизонтальный градиент с выбором цветов, количества шагов и ширины файла
+//как то очень на Гапановича похоже
 #include<iostream>
 #include<fstream>  
 #include<clocale>
@@ -25,7 +26,7 @@ int main() {
 	cin >> rend >> gend >> bend;
 	float step = 0;
 	cout << "Количество шагов:\n";
-	cin >> step;
+	cin >> step;//не увидел разницу если ввожу 2 и ввожу 200. что то не то!
 	float stepR = abs((rend - rstart) / step);
 	float stepG = abs((gend - gstart) / step);
 	float stepB = abs((bend - bstart) / step);
