@@ -10,8 +10,8 @@ struct color { unsigned char b; unsigned char g; unsigned char r; } c;
 
 int main() {
   setlocale(LC_ALL, "RUS");
-  ifstream fff("C:\\file.bmp", ios::binary); //  ios::binary влияет ТОЛЬКО на endl.
-  ofstream ggg("C:\\wrt.bmp", ios::binary);//сюда пишем (поток типа ofstream= output file stream)
+  ifstream fff("d:\\1.bmp", ios::binary); //  ios::binary влияет ТОЛЬКО на endl.
+  ofstream ggg("d:\\rez.bmp", ios::binary);//сюда пишем (поток типа ofstream= output file stream)
   if (!fff) { cout << "No file d:\\1.bmp. Can't open\n"; exit(1); }
   if (!ggg) { cout << "No file d:\\rez.bmp. Can't create\n"; exit(1); }
 
