@@ -5,23 +5,11 @@ using namespace std;
 
 const double PI = 3.141592653589;
 
+double radius (double x, double y);
+double angle (double x, double y);
+
 class Coords {
 	public:
-	double radius (double x, double y) { // не понял зачем это в public???
-		return sqrt(x*x + y*y); 
-	}
-	double angle (double x, double y) { // не понял зачем это в public???
-		if(x != 0 || y!= 0){
-			if(x <= 0 && y < 0)
-				return atan(y / x) - PI;
-			else if(x <= 0 && y >= 0)
-				return  atan(y / x) + PI;
-			else
-				return atan(y / x);
-
-		}
-		else return 0;
-	}
 	Coords() { cout << "Default constructor is working!\n"; }
 	Coords(double tmp) { x = tmp; y = 0; r = radius(x,y); fi = angle(x,y); cout << "Constructor for one coordinate is working\n"; }
 	Coords(double tmp1, double tmp2) { x = tmp1; y = tmp2; r = radius(x, y); fi = angle(x, y); cout << "Constructor for two coordinates is working\n";}
@@ -45,12 +33,12 @@ class Coords {
 		return y; 
 	}
 	friend Coords operator + ( Coords& left,const Coords& right){
-		double tmp = left.x + right.x, tmp1 = left.y + right.y;
-		return Coords(tmp, tmp1, left.radius(tmp,tmp1), left.angle(tmp,tmp1));
+		double tmp = left.x + right.x, tmp1 = left.y + right.y, tmp2 = radius(tmp,tmp1), tmp3 = angle(tmp,tmp1);
+		return Coords(tmp, tmp1, tmp2, tmp3);
 	}
 	friend Coords operator - ( Coords& left, const Coords& right){
-		double tmp = left.x - right.x, tmp1 = left.y - right.y;
-		return Coords(tmp, tmp1, left.radius(tmp, tmp1), left.angle(tmp, tmp1));
+		double tmp = left.x - right.x, tmp1 = left.y - right.y, tmp2 = radius(tmp,tmp1), tmp3 = angle(tmp,tmp1);
+		return Coords(tmp, tmp1, tmp2, tmp3);
 	}
 	Coords& operator += (const Coords& right) {
 		this->x += right.x;
@@ -79,7 +67,7 @@ class Coords {
 	}
 	friend istream& operator >> (istream & stream,  Coords& tmp)
 	{
-		stream >> tmp.x >> tmp.y; tmp.r = tmp.radius(tmp.x, tmp.y); tmp.fi = tmp.angle(tmp.x, tmp.y);
+		stream >> tmp.x >> tmp.y; tmp.r = radius(tmp.x, tmp.y); tmp.fi = angle(tmp.x, tmp.y);
 		return stream;
 	}
 	;
@@ -121,3 +109,19 @@ int main() {
 	system("pause");
 	return 0;
 }
+
+double radius (double x, double y) {
+		return sqrt(x*x + y*y); 
+	}
+	double angle (double x, double y) {
+		if(x != 0 || y!= 0){
+			if(x <= 0 && y < 0)
+				return atan(y / x) - PI;
+			else if(x <= 0 && y >= 0)
+				return  atan(y / x) + PI;
+			else
+				return atan(y / x);
+
+		}
+		else return 0;
+	}
