@@ -5,11 +5,11 @@ using namespace std;
 
 const double PI = 3.141592653589;
 
-double radius (double x, double y);
-double angle (double x, double y);
+double radius (double x, double y);// вообще вне класса???? Ну, странновато. Но ладно...
+double angle (double x, double y);// вообще вне класса???? Ну, странновато. Но ладно...
 
 class Coords {
-	public:
+	public:// не вижу const и не вижу списков инициализации!!!!!
 	Coords() { cout << "Default constructor is working!\n"; }
 	Coords(double tmp) { x = tmp; y = 0; r = radius(x,y); fi = angle(x,y); cout << "Constructor for one coordinate is working\n"; }
 	Coords(double tmp1, double tmp2) { x = tmp1; y = tmp2; r = radius(x, y); fi = angle(x, y); cout << "Constructor for two coordinates is working\n";}
@@ -33,11 +33,11 @@ class Coords {
 		return y; 
 	}
 	friend Coords operator + ( Coords& left,const Coords& right){
-		double tmp = left.x + right.x, tmp1 = left.y + right.y, tmp2 = radius(tmp,tmp1), tmp3 = angle(tmp,tmp1);
+		double tmp = left.x + right.x, tmp1 = left.y + right.y, tmp2 = radius(tmp,tmp1), tmp3 = angle(tmp,tmp1);// зачем столько временных переменных?????
 		return Coords(tmp, tmp1, tmp2, tmp3);
 	}
 	friend Coords operator - ( Coords& left, const Coords& right){
-		double tmp = left.x - right.x, tmp1 = left.y - right.y, tmp2 = radius(tmp,tmp1), tmp3 = angle(tmp,tmp1);
+		double tmp = left.x - right.x, tmp1 = left.y - right.y, tmp2 = radius(tmp,tmp1), tmp3 = angle(tmp,tmp1);// зачем столько временных переменных?????
 		return Coords(tmp, tmp1, tmp2, tmp3);
 	}
 	Coords& operator += (const Coords& right) {
