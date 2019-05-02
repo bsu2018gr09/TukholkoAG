@@ -6,7 +6,7 @@ using namespace std;
 const double PI = 3.141592653589;
 
 class Coords {
-public:// не вижу const и не вижу списков инициализации!!!!! - добавил в конструкторах списки инициализации. Не понимаю, где не хватает const.
+public:// не вижу const и не вижу списков инициализации!!!!! - добавил в конструкторах списки инициализации.
 	Coords() : x(0), y(0), r(radius(x, y)), fi(angle(x, y)) { cout << "Default constructor is working!\n"; }
 	Coords(double tmp) : x(tmp), y(0), r(radius(x, y)), fi(angle(x, y)) { cout << "Constructor for one coordinate is working\n"; }
 	Coords(double tmp1, double tmp2) : x(tmp1), y(tmp2), r(radius(x, y)), fi(angle(x, y)) { cout << "Constructor for two coordinates is working\n"; }
@@ -23,16 +23,16 @@ public:// не вижу const и не вижу списков инициализ
 		r = radius(x, y);
 		fi = angle(x, y);
 	}
-	double get_x() {
+	double get_x() const {
 		return x;
 	}
-	double get_y() {
+	double get_y() const {
 		return y;
 	}
-	Coords operator + (const Coords& right) {
+	const Coords operator + (const Coords& right) {
 		return Coords(x + right.x, y + right.y, radius(x + right.x, y + right.y), angle(x + right.x, y + right.y));
 	}
-	Coords operator - (const Coords& right) {
+	const Coords operator - (const Coords& right) {
 		return Coords(x - right.x, y - right.y, radius(x - right.x, y - right.y), angle(x - right.x, y - right.y));
 	}
 	Coords& operator = (const Coords& right) {
