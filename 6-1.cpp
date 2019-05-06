@@ -6,11 +6,11 @@ using namespace std;
 const double PI = 3.141592653589;
 
 class Coords {
-public:// не вижу const и не вижу списков инициализации!!!!! - добавил в конструкторах списки инициализации.
+public:// не хватает геттеров по моему
 	Coords() : x(0), y(0), r(radius(x, y)), fi(angle(x, y)) { cout << "Default constructor is working!\n"; }
 	Coords(double tmp) : x(tmp), y(0), r(radius(x, y)), fi(angle(x, y)) { cout << "Constructor for one coordinate is working\n"; }
 	Coords(double tmp1, double tmp2) : x(tmp1), y(tmp2), r(radius(x, y)), fi(angle(x, y)) { cout << "Constructor for two coordinates is working\n"; }
-	Coords(double tmp1, double tmp2, double tmp3, double tmp4) : x(tmp1), y(tmp2), r(tmp3), fi(tmp4) { cout << "Constructor for all coordinates is working\n"; }
+	Coords(double tmp1, double tmp2, double tmp3, double tmp4) : x(tmp1), y(tmp2), r(tmp3), fi(tmp4) { cout << "Constructor for all coordinates is working\n"; } // не согласен!!!! Подумай почему
 	Coords(Coords const &t) : x(t.x), y(t.y), r(radius(x, y)), fi(angle(x, y)) { cout << "copy constructor\n"; }
 	~Coords() { cout << "working destructor for " << x << ";" << y << '\n'; }
 	void set_x(double tmp) {
@@ -23,7 +23,7 @@ public:// не вижу const и не вижу списков инициализ
 		r = radius(x, y);
 		fi = angle(x, y);
 	}
-	double get_x() const {
+	double get_x() const {// не хватает геттеров по моему
 		return x;
 	}
 	double get_y() const {
