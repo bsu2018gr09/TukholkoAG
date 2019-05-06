@@ -38,7 +38,7 @@ void printArr2(int **ptr, int N, int M) {
 }
 
 int min(int **ptr, int M, int i) {
-	int min{ 20 };
+	int min{ 20 };//что за бред??????????????????????????????????
 	for (int j = 0; j < M; ++j) {
 		if (ptr[i][j]<min)
 			min = ptr[i][j];
@@ -72,8 +72,8 @@ int main() {
 	cin >> N >> M;
 	int **ptr = nullptr;
 	giveMemory2(ptr, N, M);
-	initRandArray(ptr, N, M, 0, 10);
-	printArr2(ptr, N, M);
+	initRandArray(ptr, N, M, 0, 10);//что за "магические" константы???
+	printArr2(ptr, N, M);//
 	sort(ptr, N, M);cout << '\n';
 	printArr2(ptr, N, M);
 	freeMemory(ptr, N);
