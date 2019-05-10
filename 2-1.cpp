@@ -38,7 +38,7 @@ void printArr2(int **ptr, int N, int M) {
 }
 
 int min(int **ptr, int M, int i) {
-	int min{ 20 };//что за бред??????????????????????????????????
+	int min = ptr[0][0];
 	for (int j = 0; j < M; ++j) {
 		if (ptr[i][j]<min)
 			min = ptr[i][j];
@@ -67,12 +67,13 @@ void freeMemory(int **&s, int N) {
 	s = nullptr;
 }
 int main() {
-	int N{ 0 }, M{ 0 };
+	int N{ 0 }, M{ 0 }, min{0}, max{0};
 	cout << "Enter N columns and number of elements in it\n";
 	cin >> N >> M;
 	int **ptr = nullptr;
 	giveMemory2(ptr, N, M);
-	initRandArray(ptr, N, M, 0, 10);//что за "магические" константы???
+	cin >> min >> max;
+	initRandArray(ptr, N, M, min, max);
 	printArr2(ptr, N, M);//
 	sort(ptr, N, M);cout << '\n';
 	printArr2(ptr, N, M);
