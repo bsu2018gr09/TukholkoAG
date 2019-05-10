@@ -66,7 +66,6 @@ void delWords(char **&strings,int cnt) {
 			strcpy(start, p);
 			strcpy(end, p);
 			end += strcspn(p, str2) + 1;
-			//if (!strcspn(p, str1))start[0] = '\0';
 			start[strcspn(p, str1)] = '\0';
 			strcat(start, end);
 			strcpy(*(strings + j), start);
