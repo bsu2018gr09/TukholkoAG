@@ -10,7 +10,15 @@ public:// не хватает геттеров по моему. - Добавил
 	Coords() : x(0), y(0), r(radius(x, y)), fi(angle(x, y)) { cout << "Default constructor is working!\n"; }
 	Coords(double tmp) : x(tmp), y(0), r(radius(x, y)), fi(angle(x, y)) { cout << "Constructor for one coordinate is working\n"; }
 	Coords(double tmp1, double tmp2) : x(tmp1), y(tmp2), r(radius(x, y)), fi(angle(x, y)) { cout << "Constructor for two coordinates is working\n"; }
-	Coords(double tmp1, double tmp2, double tmp3, double tmp4) : x(tmp1), y(tmp2), r(tmp3), fi(tmp4) { cout << "Constructor for all coordinates is working\n"; } // не согласен!!!! Подумай почему
+	Coords(double tmp1, double tmp2, double tmp3, double tmp4) : x(tmp1), y(tmp2), r(tmp3), fi(tmp4) {
+		double tmp_r = radius(x, y), tmp_fi = angle(x, y);
+		if (tmp_r != r && tmp_fi != fi) {
+			cout << "Coordinates entered incorrectly\n";
+			r = tmp_r;
+			fi = tmp_fi;
+		}
+		cout << "Constructor for all coordinates is working\n"; 
+	}
 	Coords(Coords const &t) : x(t.x), y(t.y), r(radius(x, y)), fi(angle(x, y)) { cout << "copy constructor\n"; }
 	~Coords() { cout << "working destructor for " << x << ";" << y << '\n'; }
 	void set_x(double tmp) {
