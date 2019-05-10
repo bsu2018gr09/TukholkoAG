@@ -6,7 +6,7 @@ using namespace std;
 const double PI = 3.141592653589;
 
 class Coords {
-public:// не хватает геттеров по моему
+public:// не хватает геттеров по моему. - Добавил
 	Coords() : x(0), y(0), r(radius(x, y)), fi(angle(x, y)) { cout << "Default constructor is working!\n"; }
 	Coords(double tmp) : x(tmp), y(0), r(radius(x, y)), fi(angle(x, y)) { cout << "Constructor for one coordinate is working\n"; }
 	Coords(double tmp1, double tmp2) : x(tmp1), y(tmp2), r(radius(x, y)), fi(angle(x, y)) { cout << "Constructor for two coordinates is working\n"; }
@@ -23,11 +23,17 @@ public:// не хватает геттеров по моему
 		r = radius(x, y);
 		fi = angle(x, y);
 	}
-	double get_x() const {// не хватает геттеров по моему
+	double get_x() const {// не хватает геттеров по моему . - Добавил
 		return x;
 	}
 	double get_y() const {
 		return y;
+	}
+	double get_r() const {
+		return r;
+	}
+	double get_fi() const {
+		return fi;
 	}
 	const Coords operator + (const Coords& right) {
 		return Coords(x + right.x, y + right.y, radius(x + right.x, y + right.y), angle(x + right.x, y + right.y));
