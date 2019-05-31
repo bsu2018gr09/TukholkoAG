@@ -434,7 +434,7 @@ int main()
 	int count = 0;
 	while (listForCount.ignore((numeric_limits<streamsize>::max)(), '\n')) count++;
 	listForCount.close();
-	N = count-1; cout << N<<"\n";
+	N = count-1; 
 	list.open("d:\\Students.txt");
 	if (!list) { cout << "No file d:\\Students.txt"; system("pause"); }
 	Student *Students = new (nothrow) Student[N];
