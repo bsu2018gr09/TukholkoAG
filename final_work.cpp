@@ -1,4 +1,10 @@
-﻿#define _CRT_SECURE_NO_WARNINGS
+﻿/*
+	Объект содержит информацию о местожитольстве студентов факультет: фамилия и имя студента,
+	курс, группа, место проживания.
+	Не доработана функция с удалением студента, поэтому в списке не должно быть студентов с одинаковым именем.
+	Файл для тестирования в репозитории Students.txt
+*/
+#define _CRT_SECURE_NO_WARNINGS
 #include<iostream>
 #include "windows.h"
 #include<fstream>
@@ -175,6 +181,7 @@ public:
 	friend void sortAlfabet(ofstream &list2,Student *arr, int N)
 	{
 		list2.open("C:\\Users\\Xiaomi\\VS projects\\Students.txt");
+		if (!list2) { cout << "No file C:\\Users\\Xiaomi\\VS projects\\Students.txt"; system("pause"); }
 		for (int i = 0; i < N - 1; i++)
 		{
 			int flag = 0;
@@ -355,6 +362,7 @@ public:
 	friend void addStudent(ofstream &list2,Student *&arr,int & N)
 	{
 		list2.open("C:\\Users\\Xiaomi\\VS projects\\Students.txt",ios_base::app);
+		if (!list2) { cout << "No file C:\\Users\\Xiaomi\\VS projects\\Students.txt"; system("pause"); }
 		N++;
 		Student *tmp = new (nothrow) Student[N];
 		for (int i = 0; i < N-1; ++i)
@@ -372,18 +380,13 @@ public:
 	}
 	friend void delStudent(ofstream &list2, Student *&arr, int & N)
 	{
-		list2.open("C:\\Users\\Xiaomi\\VS projects\\Students.txt");
+		list2.open("C:\\Users\\Xiaomi\\VS projects\\Students.txt");	
+		if (!list2) { cout << "No file C:\\Users\\Xiaomi\\VS projects\\Students.txt"; system("pause"); }
 		string str;
 		cout<<"Введите имя студента, которого хотите удалить\n";
 		cin.ignore();
 		getline(std::cin,str);
-		int count = 0,i=0;
-
-	/*	while (count < N)
-		{
-			if (arr[i].name == str)
-				count++; i++;
-		}*/
+		int i=0;
 		N--;
 		Student *tmp = new (nothrow) Student[N];
 		for (int i = 0,j = 0; i < N; ++j)
@@ -423,15 +426,16 @@ int main()
 	SetConsoleOutputCP(1251);
 	ifstream list;
 	ifstream listForCount("C:\\Users\\Xiaomi\\VS projects\\Students.txt");
+	if (!listForCount) { cout << "No file C:\\Users\\Xiaomi\\VS projects\\Students.txt"; system("pause"); }
 	ofstream list2;
 	ofstream rez("C:\\Users\\Xiaomi\\VS projects\\rez.txt");
-	if (!list) { cout << "No file C:\\Users\\Xiaomi\\VS projects\\Students.txt"; exit(1); }
-	if (!rez) { cout << "No file C:\\Users\\Xiaomi\\VS projects\\rez.txt"; exit(1); }
+	if (!rez) { cout << "No file C:\\Users\\Xiaomi\\VS projects\\rez.txt"; system("pause"); }
 	int count = 0;
 	while (listForCount.ignore((numeric_limits<streamsize>::max)(), '\n')) count++;
 	listForCount.close();
 	N = count-1; cout << N<<"\n";
 	list.open("C:\\Users\\Xiaomi\\VS projects\\Students.txt");
+	if (!list) { cout << "No file C:\\Users\\Xiaomi\\VS projects\\Students.txt"; system("pause"); }
 	Student *Students = new (nothrow) Student[N];
 	readStudents(list, Students, N);
 	menu(Students, N, rez,list2);
